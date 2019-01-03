@@ -8,28 +8,13 @@ using System.Web.Script.Serialization;
 
 namespace Ofoct
 {
-    public class AudioToText
+    public partial class AudioToText
     {
 
         public enum Engine
         {
             Baidu,
             CMU_Sphinx
-        }
-
-        public class AudioFile
-        {
-            public string Name { get; set; }
-            public string Type { get; set; }
-            public string Path { get; set; }
-            public string TempName { get; set; }
-
-            public AudioFile(string filename)
-            {
-                Path = filename;
-                Name = new FileInfo(filename).Name;
-                Type = new FileInfo(filename).Extension.Replace(".", "");
-            }
         }
 
         private const string main_url = "https://www.ofoct.com/audio-converter/audio-to-text.html";
@@ -54,33 +39,6 @@ namespace Ofoct
                 this.host = DetermineHost(res);
             }
         }
-
-        public string Convert(string audioFile, Engine engine = Engine.Baidu)
-        {
-            var file = new AudioFile(audioFile);
-
-            UploadFile(string.Format(upload_url, this.host), file);
-
-            var converted = ConvertFile(file, engine);
-
-            if (!converted)
-                ConvertFile(file, (engine == Engine.Baidu) ? Engine.CMU_Sphinx : Engine.Baidu);
-
-            return DownloadFile(file);
-        }
-
-
-        public string Convert(AudioFile audioFile, Engine engine = Engine.Baidu)
-        {
-            var converted = ConvertFile(audioFile, engine);
-
-            if (!converted)
-                ConvertFile(audioFile, (engine == Engine.Baidu) ? Engine.CMU_Sphinx : Engine.Baidu);
-
-            return DownloadFile(audioFile);
-        }
-
-
 
 
         public AudioFile UploadFile(string fileName)
@@ -135,6 +93,31 @@ namespace Ofoct
             }
         }
 
+        
+        public string Convert(string audioFile, Engine engine = Engine.Baidu)
+        {
+            var file = new AudioFile(audioFile);
+
+            UploadFile(string.Format(upload_url, this.host), file);
+
+            var converted = ConvertFile(file, engine);
+
+            if (!converted)
+                ConvertFile(file, (engine == Engine.Baidu) ? Engine.CMU_Sphinx : Engine.Baidu);
+
+            return DownloadFile(file);
+        }
+
+        public string Convert(AudioFile audioFile, Engine engine = Engine.Baidu)
+        {
+            var converted = ConvertFile(audioFile, engine);
+
+            if (!converted)
+                ConvertFile(audioFile, (engine == Engine.Baidu) ? Engine.CMU_Sphinx : Engine.Baidu);
+
+            return DownloadFile(audioFile);
+        }
+        
         private bool ConvertFile(AudioFile audioFile, Engine engine)
         {
             var Client = CreateHttpClient();
@@ -148,6 +131,7 @@ namespace Ofoct
             return (res.Split('|')[1] == "SUCCESS");
         }
 
+
         private string DownloadFile(AudioFile audioFile)
         {
             using (var client = CreateHttpClient())
@@ -157,7 +141,8 @@ namespace Ofoct
             }
         }
 
-        private string DetermineHost(string sourceCode)
+
+        private static string DetermineHost(string sourceCode)
         {
             return Regex.Match(sourceCode, @"ct\d").Value + ".ofoct.com";
         }

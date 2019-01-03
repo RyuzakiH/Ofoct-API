@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AudioFile.cs" />
     <Compile Include="AudioToText.cs" />
     <Compile Include="HttpClient.cs">
       <SubType>Component</SubType>
