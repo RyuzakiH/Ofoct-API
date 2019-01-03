@@ -7,8 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ofoct-API", "ofoct-API\ofoc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "audio-samples", "audio-samples", "{2AE14F00-D0EA-4439-863B-83F0618FF194}"
 	ProjectSection(SolutionItems) = preProject
-		ofoct-API\audio\application.ogg = ofoct-API\audio\application.ogg
-		ofoct-API\audio\congratulations.mp3 = ofoct-API\audio\congratulations.mp3
+		audio-samples\application.ogg = audio-samples\application.ogg
+		audio-samples\congratulations.mp3 = audio-samples\congratulations.mp3
 	EndProjectSection
 EndProject
 Global
