@@ -1,5 +1,7 @@
 # Ofoct-API
-Unofficial API for [Ofoct/AudioToText](https://www.ofoct.com/audio-converter/audio-to-text.html) in .NET
+Unofficial API for [Ofoct/AudioToText](https://www.ofoct.com/audio-converter/audio-to-text.html) in .NET<br /><br />
+Incomplete, it's for the audio-to-text tool only till now.<br />
+Can be used to solve audio captcha.<br />
 
 # Website Tool Description
 This is an online tool for recognition audio voice file (mp3, wav, ogg, wma) to text.<br /><br />
