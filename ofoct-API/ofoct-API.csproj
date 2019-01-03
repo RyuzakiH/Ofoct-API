@@ -49,12 +49,5 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="audio\application.ogg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="audio\congratulations.mp3" />
-    <Content Include="audio\wochitmar_txt.mp3" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
